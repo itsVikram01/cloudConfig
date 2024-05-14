@@ -1,21 +1,39 @@
 eureka:
+
   client:
     register-with-eureka: true
     fetch-registry: true
     service-url:
       defaultZone: http://localhost:8761/eureka/
+  
   instance:
     hostname: localhost
     
-            
+
 microservice:
+
+  user-service:
+    endpoints:
+      endpoint:
+        uri: http://USER-SERVICE/user/{userId}
+
+  contact-service:
+    endpoints:
+      endpoint:
+        uri: http://CONTACT-SERVICE/contact/user/{userId}
+        
+  order-service:
+    endpoints:
+      endpoint:
+        uri: http://ORDER-SERVICE/order/bookOrder
+
   payment-service:
     endpoints:
       endpoint:
         uri: http://PAYMENT-SERVICE/payment/doPayment
-
-  order-service:
+  payment-service:
     endpoints:
       endpoint:
-        uri: http://ORDER-SERVICE/payment/doPayment
+        uri: http://PAYMENT-SERVICE/payment/{orderId}
+
 
